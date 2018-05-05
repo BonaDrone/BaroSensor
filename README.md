@@ -17,7 +17,7 @@ For a simple example sketch that prints the temperature and pressure, launch Ard
 
 Usage:
 
-    BaroSensor.begin()
+    MS5637.begin()
 
 Call this in the `setup()` part of your sketch to initialise the BARO module. If the module later returns any errors for some reason, calling `begin()` again will reset it.
 
@@ -32,11 +32,11 @@ Takes a temperature reading and returns it.
 
 ### Basic Usage:
 
-    float temp = BaroSensor.getTemperature();
+    float temp = MS5637.getTemperature();
 
 ### Advanced Usage:
 
-     float temp = BaroSensor.getTemperature(FAHRENHEIT, OSR_1024);
+     float temp = MS5637.getTemperature(FAHRENHEIT, OSR_1024);
 
 ### Arguments:
 
@@ -63,11 +63,11 @@ Takes an air pressure reading and returns it
 
 ### Basic Usage:
 
-    float temp = BaroSensor.getTemperature();
+    float temp = MS5637.getTemperature();
 
 ### Advanced Usage:
 
-     float temp = BaroSensor.getTemperature(FAHRENHEIT, OSR_1024);
+     float temp = MS5637.getTemperature(FAHRENHEIT, OSR_1024);
 
 ### Arguments
 
@@ -107,9 +107,9 @@ success.
 
     float temp;
     float pressure;
-    if(!BaroSensor.getTempAndPressure(&temp, &pressure) {
+    if(!MS5637.getTempAndPressure(&temp, &pressure) {
       Serial.print("Error: ");
-      Serial.println(BaroSensor.getError());
+      Serial.println(MS5637.getError());
     } else {
       Serial.print("Temp: ");
       Serial.println(temp);
@@ -127,10 +127,10 @@ success.
 
 ### Basic Usage:
 
-    if(!BaroSensor.isOK()) {
+    if(!MS5637.isOK()) {
       Serial.print("Sensor error occurred. Error number: "); 
-      Serial.println(BaroSensor.getError());
-      BaroSensor.begin(); // Try to reinitialise the sensor if we can
+      Serial.println(MS5637.getError());
+      MS5637.begin(); // Try to reinitialise the sensor if we can
     }
 
 ### Returns
