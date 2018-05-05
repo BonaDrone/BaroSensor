@@ -7,15 +7,15 @@
  */
 
 #include <Wire.h>
-#include <BaroSensor.h>
+#include <MS5637.h>
 
 void setup()
 {
   Serial.begin(9600);
   Serial.println("Initialising sensor...");
-  BaroSensor.begin();
+  MS5637.begin();
   Serial.println("Outputting debug values:");
-  BaroSensor.dumpDebugOutput();
+  MS5637.dumpDebugOutput();
   Serial.println("Done.");
 }
 
