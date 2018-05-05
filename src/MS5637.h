@@ -40,22 +40,37 @@ typedef enum {
 
 class MS5637Class {
 
+  private:
+    
+    bool initialised;
+    
+    int8_t err;
+    
+    uint16_t c1,c2,c3,c4,c5,c6; // Calibration constants used in producing results
+
+    uint32_t takeReading(uint8_t trigger_cmd, BaroOversampleLevel oversample_level);
+
   public:
     
     MS5637Class() : initialised(false), err(ERR_NEEDS_BEGIN) { }
     
     void begin();
 
-    /* Return temperature in C or Fahrenheit */
-    float getTemperature(TempUnit scale = CELSIUS,
-                         BaroOversampleLevel level = OSR_8192);
-    /* Return pressure in mbar */
+    /* 
+      Return temperature in C or Fahrenheit 
+    */
+    float getTemperature(TempUnit scale = CELSIUS, BaroOversampleLevel level = OSR_8192);
+    
+    /* 
+      Return pressure in mbar 
+    */
     float getPressure(BaroOversampleLevel level = OSR_8192);
 
-    /* Update both temperature and pressure together. This takes less
-       time than calling each function separately (as pressure result
-       depends on temperature.) Returns true for success, false on an
-       error 
+    /* 
+      Update both temperature and pressure together. This takes less
+      time than calling each function separately (as pressure result
+      depends on temperature.) Returns true for success, false on an
+      error 
     */
     bool getTempAndPressure(float *temperature,
                             float *pressure,
@@ -66,18 +81,10 @@ class MS5637Class {
     
     inline byte getError() { return initialised ? err : ERR_NEEDS_BEGIN; }
 
-    /* Debugging function that outputs a list of debugging data to Serial */
+    /* 
+      Debugging function that outputs a list of debugging data to Serial 
+    */
     void dumpDebugOutput();
-
-  private:
-    
-    bool initialised;
-    
-    int8_t err;
-    
-    uint16_t c1,c2,c3,c4,c5,c6; // Calibration constants used in producing results
-
-    uint32_t takeReading(uint8_t trigger_cmd, BaroOversampleLevel oversample_level);
 
 };
 
