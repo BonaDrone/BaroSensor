@@ -1,24 +1,24 @@
 #include <Wire.h>
-#include <BaroSensor.h>
+#include <MS5637.h>
 
 void setup()
 {
   Serial.begin(9600);
-  BaroSensor.begin();
+  MS5637.begin();
 }
 
 void loop()
 {
-  if(!BaroSensor.isOK()) {
+  if(!MS5637.isOK()) {
     Serial.print("Sensor not Found/OK. Error: "); 
-    Serial.println(BaroSensor.getError());
-    BaroSensor.begin(); // Try to reinitialise the sensor if we can
+    Serial.println(MS5637.getError());
+    MS5637.begin(); // Try to reinitialise the sensor if we can
   }
   else {
     Serial.print("Temperature: "); 
-    Serial.println(BaroSensor.getTemperature());
+    Serial.println(MS5637.getTemperature());
     Serial.print("Pressure:    ");
-    Serial.println(BaroSensor.getPressure());
+    Serial.println(MS5637.getPressure());
   }
   delay(1000);
 }
