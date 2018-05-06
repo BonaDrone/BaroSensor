@@ -67,12 +67,12 @@ class MS5637 {
     /* 
       Return temperature in C or Fahrenheit 
     */
-    float getTemperature(TempUnit scale = CELSIUS, BaroOversampleLevel level = OSR_8192);
+    bool getTemperature(float *temperature, TempUnit scale = CELSIUS, BaroOversampleLevel level = OSR_8192);
     
     /* 
       Return pressure in mbar 
     */
-    float getPressure(BaroOversampleLevel level = OSR_8192);
+    bool getPressure(float *pressure, BaroOversampleLevel level = OSR_8192);
 
     /* 
       Update both temperature and pressure together. This takes less

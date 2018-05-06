@@ -96,24 +96,21 @@ void MS5637::begin()
     initialised = true;
 }
 
-float MS5637::getTemperature(TempUnit scale, BaroOversampleLevel level)
+bool MS5637::getTemperature(float *temperature, TempUnit scale, BaroOversampleLevel level)
 {
-    float result;
     
-    if(getTempAndPressure(&result, NULL, scale, level))
-      return result;
+    if(getTempAndPressure(temperature, NULL, scale, level))
+      return true;
     else
-      return NAN;
+      return false;
 }
 
-float MS5637::getPressure(BaroOversampleLevel level)
-{
-    float result;
-    
-    if(getTempAndPressure(NULL, &result, CELSIUS, level))
-      return result;
+bool MS5637::getPressure(float *pressure, BaroOversampleLevel level)
+{   
+    if(getTempAndPressure(NULL, pressure, CELSIUS, level))
+      return true;
     else
-      return NAN;
+      return false;
 }
 
 bool MS5637::getTempAndPressure(float *temperature, float *pressure, TempUnit tempScale, BaroOversampleLevel level)
