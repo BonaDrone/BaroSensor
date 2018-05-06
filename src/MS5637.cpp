@@ -10,6 +10,7 @@
 /* i2c address of module */
 #define BARO_ADDR 0x76
 
+
 /* delay to wait for sampling to complete, on each OSR level */
 const uint8_t SamplingDelayMs[6] PROGMEM = {
   2,
@@ -19,6 +20,7 @@ const uint8_t SamplingDelayMs[6] PROGMEM = {
   18,
   34
 };
+
 
 /* module commands */
 #define CMD_RESET 0x1E
@@ -43,8 +45,8 @@ inline static int8_t _endTransmission(bool stop = true) {
   // This is corrected in https://github.com/arduino/Arduino/pull/1994 but not yet released.
   return 0;
 #endif
-
 }
+
 
 void MS5637::begin()
 {

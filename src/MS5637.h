@@ -26,17 +26,26 @@
   Default is maximum accuracy.
  */
 enum BaroOversampleLevel {
-  OSR_256, OSR_512, OSR_1024, OSR_2048, OSR_4096, OSR_8192 };
+  OSR_256,
+  OSR_512, 
+  OSR_1024, 
+  OSR_2048, 
+  OSR_4096, 
+  OSR_8192 
+};
+
 
 typedef enum {
   CELSIUS,
   FAHRENHEIT
 } TempUnit;
 
+
 /* error codes */
 #define ERR_NOREPLY -1
 #define ERR_BAD_READLEN -2
 #define ERR_NEEDS_BEGIN -3
+
 
 class MS5637 {
 
