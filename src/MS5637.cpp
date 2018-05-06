@@ -32,9 +32,6 @@ const uint8_t SamplingDelayMs[6] PROGMEM = {
 #define CMD_READ_ADC 0x00
 
 
-MS5637Class MS5637;
-
-
 // Temporary hack due to bug in Arduino 1.5.0-1.5.6 on ARM (see below)
 inline static int8_t _endTransmission(bool stop = true) {
   int8_t res = Wire.endTransmission(stop);
@@ -49,7 +46,7 @@ inline static int8_t _endTransmission(bool stop = true) {
 
 }
 
-void MS5637Class::begin()
+void MS5637::begin()
 {
     Wire.begin();
     Wire.beginTransmission(BARO_ADDR);
@@ -94,7 +91,7 @@ void MS5637Class::begin()
     initialised = true;
 }
 
-float MS5637Class::getTemperature(TempUnit scale, BaroOversampleLevel level)
+float MS5637::getTemperature(TempUnit scale, BaroOversampleLevel level)
 {
     float result;
     
@@ -104,7 +101,7 @@ float MS5637Class::getTemperature(TempUnit scale, BaroOversampleLevel level)
       return NAN;
 }
 
-float MS5637Class::getPressure(BaroOversampleLevel level)
+float MS5637::getPressure(BaroOversampleLevel level)
 {
     float result;
     
@@ -114,7 +111,7 @@ float MS5637Class::getPressure(BaroOversampleLevel level)
       return NAN;
 }
 
-bool MS5637Class::getTempAndPressure(float *temperature, float *pressure, TempUnit tempScale, BaroOversampleLevel level)
+bool MS5637::getTempAndPressure(float *temperature, float *pressure, TempUnit tempScale, BaroOversampleLevel level)
 {
     if(err || !initialised)
       return false;
@@ -184,7 +181,7 @@ bool MS5637Class::getTempAndPressure(float *temperature, float *pressure, TempUn
     return true;
 }
 
-uint32_t MS5637Class::takeReading(uint8_t trigger_cmd, BaroOversampleLevel oversample_level)
+uint32_t MS5637::takeReading(uint8_t trigger_cmd, BaroOversampleLevel oversample_level)
 {
     Wire.beginTransmission(BARO_ADDR);
     Wire.write(trigger_cmd);
@@ -222,7 +219,7 @@ uint32_t MS5637Class::takeReading(uint8_t trigger_cmd, BaroOversampleLevel overs
     return result;
 }
 
-void MS5637Class::dumpDebugOutput()
+void MS5637::dumpDebugOutput()
 {
     Serial.print(F("C1 = 0x"));
     Serial.println(c1, HEX);

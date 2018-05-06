@@ -1,7 +1,7 @@
 /* BaroSensor
  *
  * An Arduino library for the Freetronics BARO sensor module, using
- * the Measurement Specialties MS5637Class-02BA03 Altimeter/Pressure sensor
+ * the Measurement Specialties MS5637-02BA03 Altimeter/Pressure sensor
  * module
  *
  * http://www.freetronics.com/baro
@@ -14,16 +14,16 @@
  * Written by Angus Gratton (angus at freetronics dot com)
  */
  
-#ifndef _BAROLIBRARY_H
-#define _BAROLIBRARY_H
+#pragma once
 
 #include "Arduino.h"
 #include "Wire.h"
 
-/* Module supports a range of lower oversampling levels, for faster
-   less accurate results.
+/* 
+  Module supports a range of lower oversampling levels, for faster
+  less accurate results.
 
-   Default is maximum accuracy.
+  Default is maximum accuracy.
  */
 enum BaroOversampleLevel {
   OSR_256, OSR_512, OSR_1024, OSR_2048, OSR_4096, OSR_8192 };
@@ -38,7 +38,7 @@ typedef enum {
 #define ERR_BAD_READLEN -2
 #define ERR_NEEDS_BEGIN -3
 
-class MS5637Class {
+class MS5637 {
 
   private:
     
@@ -52,7 +52,7 @@ class MS5637Class {
 
   public:
     
-    MS5637Class() : initialised(false), err(ERR_NEEDS_BEGIN) { }
+    MS5637() : initialised(false), err(ERR_NEEDS_BEGIN) { }
     
     void begin();
 
@@ -87,7 +87,3 @@ class MS5637Class {
     void dumpDebugOutput();
 
 };
-
-extern MS5637Class MS5637;
-
-#endif
