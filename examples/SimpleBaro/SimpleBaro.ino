@@ -2,6 +2,8 @@
 #include <MS5637.h>
 
 MS5637 baro = MS5637();
+float temperature;
+float pressure;
 
 void setup()
 {
@@ -17,10 +19,12 @@ void loop()
     baro.begin(); // Try to reinitialise the sensor if we can
   }
   else {
-    Serial.print("Temperature: "); 
-    Serial.println(baro.getTemperature());
+    baro.getTemperature(&temperature);
+    baro.getPressure(&pressure); 
+    Serial.print("Temperature: ");
+    Serial.println(temperature);
     Serial.print("Pressure:    ");
-    Serial.println(baro.getPressure());
+    Serial.println(pressure);
   }
   delay(1000);
 }
