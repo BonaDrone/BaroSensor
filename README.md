@@ -13,33 +13,41 @@ For a simple example sketch that prints the temperature and pressure, launch Ard
 
 # All Available Functions
 
+Assuming the class has been instantiated and given the name `baro`:
+
+    MS5637 baro = MS5637();
+
 ## begin()
 
 Usage:
 
-    MS5637.begin()
+    baro.begin()
 
 Call this in the `setup()` part of your sketch to initialise the BARO module. If the module later returns any errors for some reason, calling `begin()` again will reset it.
 
 ## getTemperature()
 
-Takes a temperature reading and returns it.
+Takes a temperature reading and assigns it as the value of the reference passed as argument. Returns `true` if the reading was successful and `false` otherwise.
 
 ### Function signature:
 
-    float getTemperature(TempUnit scale = CELSIUS,
+    bool getTemperature(float * temperature, TempUnit scale = CELSIUS,
                          BaroOversampleLevel level = OSR_8192);
 
 ### Basic Usage:
 
-    float temp = MS5637.getTemperature();
+    float temperature;
+    baro.getTemperature(& temperature);
 
 ### Advanced Usage:
 
-     float temp = MS5637.getTemperature(FAHRENHEIT, OSR_1024);
+    float temperature;
+    baro.getTemperature(& temperature, FAHRENHEIT, OSR_1024);
 
 ### Arguments:
 
+* `& temperature` is a reference to the variable where the temperature value
+  will be stored.
 * `scale` default to CELSIUS but can be set to FAHRENHEIT if needed.
 * `level` specifies the oversampling level of the sensor. Higher
   oversampling means higher accuracy but a slower reading. OSR_8192 is
@@ -50,24 +58,25 @@ Takes a temperature reading and returns it.
 
 ### Returns
 
-Either the temperature value as a floating point number, or NAN (not a
-number) if an error occurred.
+A boolean value. `true` if the reading was successful and `false` otherwise.
 
 ## getPressure()
 
-Takes an air pressure reading and returns it
+Takes a pressure reading and assigns it as the value of the reference passed as argument. Returns `true` if the reading was successful and `false` otherwise.
 
 ### Function signature:
 
-    float getPressure(BaroOversampleLevel level = OSR_8192);
+    float getPressure(float * pressure, BaroOversampleLevel level = OSR_8192);
 
 ### Basic Usage:
 
-    float temp = MS5637.getTemperature();
+    float pressure;
+    baro.getPressure(& pressure);
 
 ### Advanced Usage:
 
-     float temp = MS5637.getTemperature(FAHRENHEIT, OSR_1024);
+     float pressure;
+     baro.getPressure(& pressure, OSR_8192);
 
 ### Arguments
 
@@ -80,8 +89,7 @@ Takes an air pressure reading and returns it
 
 ### Returns
 
-Either the pressure value as a floating point number (mbar), or NAN
-(not a number) if an error occurred.
+A boolean value. `true` if the reading was successful and `false` otherwise.
 
 ## getTempAndPressure()
 
@@ -93,7 +101,7 @@ returned.
 Execution time is roughly the same as the `getPressure` function.
 
 The temperature and pressure variables are passed in as pointers to
-the function. The result of the function is a boolean value, true for
+the function. The result of the function is a boolean value, `true` for
 success.
 
 ### Function Signature
