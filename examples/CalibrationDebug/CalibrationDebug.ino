@@ -9,13 +9,15 @@
 #include <Wire.h>
 #include <MS5637.h>
 
+MS5637 baro = MS5637();
+
 void setup()
 {
   Serial.begin(9600);
   Serial.println("Initialising sensor...");
-  MS5637.begin();
+  baro.begin();
   Serial.println("Outputting debug values:");
-  MS5637.dumpDebugOutput();
+  baro.dumpDebugOutput();
   Serial.println("Done.");
 }
 
