@@ -1,10 +1,13 @@
-/* BaroSensor Arduino library, for Freetronics BARO module (MS5637-02BA03)
+/*
+ * BaroSensor Arduino library, for Freetronics BARO module (MS5637-02BA03)
  * http://www.freetronics.com/baro
  *
  * Copyright (C)2014 Freetronics Pty Ltd. Licensed under GNU GPLv3 as described in the LICENSE file.
  *
  * Written by Angus Gratton (angus at freetronics dot com)
- */
+ *
+*/
+
 #include "MS5637.h"
 
 /* i2c address of module */
