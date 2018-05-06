@@ -41,16 +41,15 @@ typedef enum {
 } TempUnit;
 
 
-/* error codes */
-#define ERR_NOREPLY -1
-#define ERR_BAD_READLEN -2
-#define ERR_NEEDS_BEGIN -3
-
-
 class MS5637 {
 
   private:
     
+    /* error codes */
+    static const int ERR_NOREPLY      = -1;
+    static const int ERR_BAD_READLEN  = -2;
+    static const int ERR_NEEDS_BEGIN  = -3;
+
     bool initialised;
     
     int8_t err;
