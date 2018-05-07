@@ -49,6 +49,9 @@ class MS5637 {
     static const int ERR_NOREPLY      = -1;
     static const int ERR_BAD_READLEN  = -2;
     static const int ERR_NEEDS_BEGIN  = -3;
+    
+    /* i2c address of module */
+    static const int BARO_ADDR        = 0x76;
 
     bool initialised;
     
@@ -65,7 +68,7 @@ class MS5637 {
     void begin();
 
     /* 
-      Return temperature in C or Fahrenheit 
+      Return temperature in Celsius or Fahrenheit 
     */
     bool getTemperature(float *temperature, TempUnit scale = CELSIUS, BaroOversampleLevel level = OSR_8192);
     

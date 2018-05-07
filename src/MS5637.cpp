@@ -10,9 +10,6 @@
 
 #include "MS5637.h"
 
-/* i2c address of module */
-#define BARO_ADDR 0x76
-
 
 /* delay to wait for sampling to complete, on each OSR level */
 const uint8_t SamplingDelayMs[6] PROGMEM = {
