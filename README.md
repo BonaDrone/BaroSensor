@@ -1,4 +1,4 @@
-# BaroSensor Library
+# MS5637 Library
 
 This is an Arduino Library for the Freetronics BARO module, which is based around the Measurement Specialties MS5637-02BA03 Altimeter/Pressure sensor.
 
@@ -80,6 +80,7 @@ Takes a pressure reading and assigns it as the value of the reference passed as 
 
 ### Arguments
 
+* `& pressure` references the address where the pressure value is to be stored.
 * `level` specifies the oversampling level of the sensor. Higher
   oversampling means higher accuracy but a slower reading. OSR_8192 is
   the default and gives highest accuracy, however a pressure reading
