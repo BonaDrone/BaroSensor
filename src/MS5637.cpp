@@ -43,6 +43,7 @@ inline static int8_t _endTransmission(bool stop = true) {
   // ARM Arduino <= 1.5.6 doesn't return an error code from endTransmission(),
   // instead number of bytes is returned (regardless of error status or not.)
   // This is corrected in https://github.com/arduino/Arduino/pull/1994 but not yet released.
+  (void)res;
   return 0;
 #endif
 }
